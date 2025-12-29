@@ -86,6 +86,11 @@
             max-width: 100vw;
             overflow-x: hidden;
         }
+
+        /* Page View Transitions */
+        .view-section {
+            transition: opacity 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body class="selection:bg-black selection:text-white max-w-full-viewport">
@@ -93,7 +98,7 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 md:py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center">
-            <div class="flex flex-col">
+            <div class="flex flex-col cursor-pointer" onclick="showView('home')">
                 <span class="text-lg md:text-xl font-serif font-bold tracking-tight uppercase leading-none text-white transition-colors duration-300" id="nav-logo-main">
                     Durga Madhab
                 </span>
@@ -103,12 +108,13 @@
             </div>
 
             <!-- Desktop Nav -->
-            <div class="hidden md:flex items-center space-x-8 lg:space-x-10">
-                <a href="#heritage" class="nav-link text-xs lg:text-sm font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Heritage</a>
-                <a href="#vision" class="nav-link text-xs lg:text-sm font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">The Vision</a>
-                <a href="#milestones" class="nav-link text-xs lg:text-sm font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Milestones</a>
-                <a href="#gallery" class="nav-link text-xs lg:text-sm font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Gallery</a>
-                <a href="#contact" class="nav-link text-xs lg:text-sm font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Connect</a>
+            <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                <a href="#heritage" onclick="showView('home')" class="nav-link text-[10px] lg:text-xs font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Heritage</a>
+                <a href="#vision" onclick="showView('home')" class="nav-link text-[10px] lg:text-xs font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">The Vision</a>
+                <a href="#process" onclick="showView('home')" class="nav-link text-[10px] lg:text-xs font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Our Process</a>
+                <a href="#milestones" onclick="showView('home')" class="nav-link text-[10px] lg:text-xs font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Milestones</a>
+                <a href="#gallery" onclick="showView('home')" class="nav-link text-[10px] lg:text-xs font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Gallery</a>
+                <a href="#contact" onclick="showView('home')" class="nav-link text-[10px] lg:text-xs font-medium tracking-wider uppercase text-white hover:opacity-50 transition-all">Connect</a>
                 
                 <button onclick="toggleTheme()" id="theme-toggle-btn" class="flex items-center px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest bg-[#8b5e3c] text-white shadow-md hover:scale-105 active:scale-95 transition-all">
                     <i data-lucide="coffee" class="w-3.5 h-3.5 mr-2" id="toggle-icon"></i>
@@ -130,19 +136,22 @@
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl px-6 py-8">
             <div class="flex flex-col space-y-6 text-black">
-                <a href="#heritage" onclick="toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
+                <a href="#heritage" onclick="showView('home'); toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
                     Heritage <i data-lucide="chevron-right" class="w-4 h-4 opacity-30"></i>
                 </a>
-                <a href="#vision" onclick="toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
+                <a href="#vision" onclick="showView('home'); toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
                     The Vision <i data-lucide="chevron-right" class="w-4 h-4 opacity-30"></i>
                 </a>
-                <a href="#milestones" onclick="toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
+                <a href="#process" onclick="showView('home'); toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
+                    Our Process <i data-lucide="chevron-right" class="w-4 h-4 opacity-30"></i>
+                </a>
+                <a href="#milestones" onclick="showView('home'); toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
                     Milestones <i data-lucide="chevron-right" class="w-4 h-4 opacity-30"></i>
                 </a>
-                <a href="#gallery" onclick="toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
+                <a href="#gallery" onclick="showView('home'); toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
                     Gallery <i data-lucide="chevron-right" class="w-4 h-4 opacity-30"></i>
                 </a>
-                <a href="#contact" onclick="toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
+                <a href="#contact" onclick="showView('home'); toggleMobileMenu()" class="text-xl font-serif tracking-wide border-b border-gray-100 pb-3 flex justify-between items-center">
                     Connect <i data-lucide="chevron-right" class="w-4 h-4 opacity-30"></i>
                 </a>
                 <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 pt-4 text-center">Journey Began 1998 • Koraput</p>
@@ -150,273 +159,576 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative h-[100svh] flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center hero-bg scale-105 brightness-[0.45]"></div>
-        <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png')"></div>
+    <!-- Main View -->
+    <div id="home-view" class="view-section">
+        <!-- Hero Section -->
+        <section class="relative h-[100svh] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center hero-bg scale-105 brightness-[0.45]"></div>
+            <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png')"></div>
 
-        <div class="relative z-10 text-center px-6 max-w-4xl">
-            <span class="inline-block mb-4 text-white/80 text-[10px] md:text-sm tracking-[0.4em] uppercase font-light">Journey Began 1998</span>
-            <h1 class="text-4xl sm:text-6xl md:text-8xl font-serif text-white mb-6 leading-tight">
-                The Soul of the <br> 
-                <span class="italic">Koraput Hills</span>
-            </h1>
-            <p class="text-white/70 text-base md:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed px-4 md:px-0">
-                A sanctuary of heritage and purity where legacy grows in the shade of ancient trees. Our estate brings forth the finest organic coffee and peppers.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="#heritage" class="w-full sm:w-auto px-10 py-4 bg-white text-black font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-opacity-90 transition-all text-center">Explore Legacy</a>
-                <a href="#contact" class="w-full sm:w-auto px-10 py-4 border border-white/40 text-white font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-white/10 transition-all text-center">Connect with Us</a>
-            </div>
-        </div>
-
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 animate-bounce hidden sm:block">
-            <i data-lucide="chevron-down" class="w-8 h-8"></i>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="heritage" class="py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-            <div class="relative px-4 sm:px-0">
-                <div id="about-blob" class="absolute -top-4 -left-4 w-48 h-48 md:w-64 md:h-64 bg-[#8b5e3c]/10 rounded-full -z-10 transition-colors duration-700"></div>
-                <img id="about-img" src="WhatsApp Image 2025-12-28 at 9.32.12 PM.jpeg" alt="Estate Scenery" class="rounded-lg shadow-2xl w-full h-[400px] md:h-[600px] object-cover transition-all duration-700">
-                <div class="absolute -bottom-6 -right-2 md:-right-8 p-6 md:p-10 bg-primary text-white hidden sm:block max-w-[240px] md:max-w-xs shadow-xl theme-transition">
-                    <i data-lucide="history" class="mb-4 opacity-50 w-8 h-8 md:w-10 md:h-10"></i>
-                    <h3 class="text-xl md:text-2xl font-serif mb-2">Decades of Stewardship</h3>
-                    <p class="text-xs md:text-sm opacity-80 leading-relaxed italic">
-                        "Koraput’s coffee heritage represents a successful transition from traditional farming to value-driven recognition."
-                    </p>
+            <div class="relative z-10 text-center px-6 max-w-4xl">
+                <span class="inline-block mb-4 text-white/80 text-[10px] md:text-sm tracking-[0.4em] uppercase font-light">Journey Began 1998</span>
+                <h1 class="text-4xl sm:text-6xl md:text-8xl font-serif text-white mb-6 leading-tight">
+                    The Soul of the <br> 
+                    <span class="italic">Koraput Hills</span>
+                </h1>
+                <p class="text-white/70 text-base md:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed px-4 md:px-0">
+                    A sanctuary of heritage and purity where legacy grows in the shade of ancient trees. Our estate brings forth the finest organic coffee and peppers.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#heritage" class="w-full sm:w-auto px-10 py-4 bg-white text-black font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-opacity-90 transition-all text-center">Explore Legacy</a>
+                    <a href="#contact" class="w-full sm:w-auto px-10 py-4 border border-white/40 text-white font-bold uppercase text-[10px] tracking-[0.2em] hover:bg-white/10 transition-all text-center">Connect with Us</a>
                 </div>
             </div>
-            
-            <div class="space-y-6 md:space-y-8 px-2 sm:px-0">
-                <div>
-                    <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-accent transition-colors duration-700">Our Heritage</span>
-                    <h2 class="text-3xl md:text-5xl font-serif mt-2 leading-tight">Roots that run deeper than the valleys.</h2>
+
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 animate-bounce hidden sm:block">
+                <i data-lucide="chevron-down" class="w-8 h-8"></i>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="heritage" class="py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div class="relative px-4 sm:px-0">
+                    <div id="about-blob" class="absolute -top-4 -left-4 w-48 h-48 md:w-64 md:h-64 bg-[#8b5e3c]/10 rounded-full -z-10 transition-colors duration-700"></div>
+                    <img id="about-img" src="WhatsApp Image 2025-12-28 at 9.32.12 PM.jpeg" alt="Estate Scenery" class="rounded-lg shadow-2xl w-full h-[400px] md:h-[600px] object-cover transition-all duration-700">
+                    <div class="absolute -bottom-6 -right-2 md:-right-8 p-6 md:p-10 bg-primary text-white hidden sm:block max-w-[240px] md:max-w-xs shadow-xl theme-transition">
+                        <i data-lucide="history" class="mb-4 opacity-50 w-8 h-8 md:w-10 md:h-10"></i>
+                        <h3 class="text-xl md:text-2xl font-serif mb-2 text-white font-bold">Decades of Stewardship</h3>
+                        <p class="text-xs md:text-sm opacity-80 leading-relaxed italic text-white">
+                            "Koraput’s coffee heritage represents a successful transition from traditional farming to value-driven recognition."
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="space-y-4">
-                    <p class="text-base md:text-lg opacity-80 leading-relaxed">
-                        Durga Madhab Coffee and Pepper Estate began its coffee journey in 1998 under the stewardship of Trilochan Satapathy. What started as a small initiative has grown into a flourishing plantation spread across 15 acres, producing nearly 4,500 kg of coffee annually.
-                    </p>
-                    <p class="text-base md:text-lg opacity-80 leading-relaxed">
-                        The coffee cultivated here is known for its distinct taste and rich aroma, shaped by the unique soil and climate of the Koraput region. Over the years, the farm’s produce gained attention for qualities that set it apart from conventional plantation coffee.
-                    </p>
-                </div>
+                <div class="space-y-6 md:space-y-8 px-2 sm:px-0">
+                    <div>
+                        <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-accent transition-colors duration-700">Our Heritage</span>
+                        <h2 class="text-3xl md:text-5xl font-serif mt-2 leading-tight">Roots that run deeper than the valleys.</h2>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <p class="text-base md:text-lg opacity-80 leading-relaxed">
+                            Durga Madhab Coffee and Pepper Estate began its coffee journey in 1998 under the stewardship of Trilochan Satapathy. What started as a small initiative has grown into a flourishing plantation spread across 15 acres, producing nearly 4,500 kg of coffee annually.
+                        </p>
+                        <p class="text-base md:text-lg opacity-80 leading-relaxed">
+                            The coffee cultivated here is known for its distinct taste and rich aroma, shaped by the unique soil and climate of the Koraput region. Over the years, the farm’s produce gained attention for qualities that set it apart from conventional plantation coffee.
+                        </p>
+                    </div>
 
-                <div class="space-y-6">
-                    <div class="flex space-x-4">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white theme-transition shadow-sm"><span class="text-xs font-bold">1</span></div>
-                        <div>
-                            <h4 class="font-bold uppercase tracking-wider text-[11px] mb-1">Mumbai Roasters Selection</h4>
-                            <p class="text-xs md:text-sm opacity-70 leading-relaxed">Attracted interest from Mumbai roasters, leading to domestic roasting and branding for the first time.</p>
+                    <div class="space-y-6 text-black">
+                        <div class="flex space-x-4 text-black">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white theme-transition shadow-sm"><span class="text-xs font-bold">1</span></div>
+                            <div>
+                                <h4 class="font-bold uppercase tracking-wider text-[11px] mb-1">Mumbai Roasters Selection</h4>
+                                <p class="text-xs md:text-sm opacity-70 leading-relaxed">Attracted interest from Mumbai roasters, leading to domestic roasting and branding for the first time.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white theme-transition shadow-sm"><span class="text-xs font-bold">2</span></div>
-                        <div>
-                            <h4 class="font-bold uppercase tracking-wider text-[11px] mb-1">Signature Profiles</h4>
-                            <p class="text-xs md:text-sm opacity-70 leading-relaxed">Rich flavor profiles including cocoa almond, milk chocolate, dry fruit, and unique tobacco notes.</p>
+                        <div class="flex space-x-4 text-black">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white theme-transition shadow-sm"><span class="text-xs font-bold">2</span></div>
+                            <div>
+                                <h4 class="font-bold uppercase tracking-wider text-[11px] mb-1">Signature Profiles</h4>
+                                <p class="text-xs md:text-sm opacity-70 leading-relaxed">Rich flavor profiles including cocoa almond, milk chocolate, dry fruit, and unique tobacco notes.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white theme-transition shadow-sm"><span class="text-xs font-bold">3</span></div>
-                        <div>
-                            <h4 class="font-bold uppercase tracking-wider text-[11px] mb-1">Authenticity & Quality</h4>
-                            <p class="text-xs md:text-sm opacity-70 leading-relaxed">Bringing Koraput’s heritage to a wider audience through values rooted in patience and experience.</p>
+                        <div class="flex space-x-4 text-black">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white theme-transition shadow-sm"><span class="text-xs font-bold">3</span></div>
+                            <div>
+                                <h4 class="font-bold uppercase tracking-wider text-[11px] mb-1">Authenticity & Quality</h4>
+                                <p class="text-xs md:text-sm opacity-70 leading-relaxed">Bringing Koraput’s heritage to a wider audience through values rooted in patience and experience.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Owner Section -->
-    <section id="vision" class="py-20 md:py-24 bg-primary text-white overflow-hidden relative theme-transition">
-        <div id="vision-bg-icon" class="absolute top-0 right-0 opacity-5 md:opacity-10 scale-150 rotate-12 translate-x-1/4 -translate-y-1/4 pointer-events-none text-white">
-            <i data-lucide="coffee" style="width: 400px; height: 400px;" class="md:w-[600px] md:h-[600px]"></i>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 md:gap-20 items-center relative z-10">
-            <div class="order-2 md:order-1">
-                <span class="text-[10px] font-bold tracking-[0.4em] uppercase opacity-60">The Stewardship</span>
-                <h2 class="text-3xl md:text-6xl font-serif mt-4 mb-6 md:mb-8 leading-tight">Trilochan Satapathy</h2>
-                <div class="space-y-4 md:space-y-6 text-base md:text-lg opacity-80 font-light leading-relaxed">
-                    <p>"The estate stands as a reflection of patience, experience, and deep-rooted farming knowledge. What we produce today is not just a harvest, but Koraput’s heritage reached to a national stage."</p>
-                    <p>Under his leadership since 1998, the estate has grown from a humble initiative to a 15-acre flourishing plantation known for its artisanal craftsmanship.</p>
-                </div>
-                <div class="mt-8 md:mt-10 flex space-x-6 md:space-x-8">
-                    <div class="flex flex-col"><span class="text-2xl md:text-3xl font-serif">15</span><span class="text-[9px] uppercase tracking-widest opacity-50">Acres of Plantation</span></div>
-                    <div class="w-px h-10 md:h-12 bg-white/20"></div>
-                    <div class="flex flex-col"><span class="text-2xl md:text-3xl font-serif">4.5k</span><span class="text-[9px] uppercase tracking-widest opacity-50">KG Annual Yield</span></div>
-                </div>
+        <!-- Owner Section -->
+        <section id="vision" class="py-20 md:py-24 bg-primary text-white overflow-hidden relative theme-transition">
+            <div id="vision-bg-icon" class="absolute top-0 right-0 opacity-5 md:opacity-10 scale-150 rotate-12 translate-x-1/4 -translate-y-1/4 pointer-events-none text-white">
+                <i data-lucide="coffee" style="width: 400px; height: 400px;" class="md:w-[600px] md:h-[600px]"></i>
             </div>
             
-            <div class="order-1 md:order-2 relative px-4 sm:px-0">
-                <div class="aspect-[4/5] bg-gray-200 rounded-sm overflow-hidden border-[8px] md:border-[12px] border-white/10 shadow-3xl max-w-sm mx-auto md:max-w-none">
-                    <img src="owner.jpeg" alt="Trilochan Satapathy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 md:gap-20 items-center relative z-10 text-white">
+                <div class="order-2 md:order-1">
+                    <span class="text-[10px] font-bold tracking-[0.4em] uppercase opacity-60">The Stewardship</span>
+                    <h2 class="text-3xl md:text-6xl font-serif mt-4 mb-6 md:mb-8 leading-tight font-bold">Trilochan Satapathy</h2>
+                    <div class="space-y-4 md:space-y-6 text-base md:text-lg opacity-80 font-light leading-relaxed">
+                        <p>"The estate stands as a reflection of patience, experience, and deep-rooted farming knowledge. What we produce today is not just a harvest, but Koraput’s heritage reached to a national stage."</p>
+                        <p>Under his leadership since 1998, the estate has grown from a humble initiative to a 15-acre flourishing plantation known for its artisanal craftsmanship.</p>
+                    </div>
+                    <div class="mt-8 md:mt-10 flex space-x-6 md:space-x-8">
+                        <div class="flex flex-col"><span class="text-2xl md:text-3xl font-serif">15</span><span class="text-[9px] uppercase tracking-widest opacity-50">Acres of Plantation</span></div>
+                        <div class="w-px h-10 md:h-12 bg-white/20"></div>
+                        <div class="flex flex-col"><span class="text-2xl md:text-3xl font-serif">4.5k</span><span class="text-[9px] uppercase tracking-widest opacity-50">KG Annual Yield</span></div>
+                    </div>
                 </div>
-                <div class="absolute -bottom-4 -left-2 sm:-left-6 px-6 md:px-8 py-3 md:py-4 bg-secondary shadow-lg theme-transition">
-                    <span class="text-[9px] md:text-xs uppercase tracking-[0.2em] font-bold">Estate Steward Since 1998</span>
+                
+                <div class="order-1 md:order-2 relative px-4 sm:px-0">
+                    <div class="aspect-[4/5] bg-gray-200 rounded-sm overflow-hidden border-[8px] md:border-[12px] border-white/10 shadow-3xl max-w-sm mx-auto md:max-w-none">
+                        <img src="owner.jpeg" alt="Trilochan Satapathy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                    </div>
+                    <div class="absolute -bottom-4 -left-2 sm:-left-6 px-6 md:px-8 py-3 md:py-4 bg-secondary shadow-lg theme-transition">
+                        <span class="text-[9px] md:text-xs uppercase tracking-[0.2em] font-bold">Estate Steward Since 1998</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Milestones -->
-    <section id="milestones" class="py-16 md:py-24 px-4 sm:px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 md:mb-16">
-                <i data-lucide="award" class="mx-auto mb-4 text-accent w-8 h-8 md:w-10 md:h-10 transition-colors duration-700"></i>
-                <h2 class="text-3xl md:text-4xl font-serif">Estate Milestones</h2>
-                <div class="w-16 md:w-20 h-1 bg-secondary mx-auto mt-4 md:mt-6 opacity-30 theme-transition"></div>
+        <!-- Our Process Section -->
+        <section id="process" class="py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden text-black">
+            <div class="text-center mb-16">
+                <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-accent transition-colors duration-700">From Soil to Legacy</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-2 text-black">The Estate Process</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mt-6 opacity-30 theme-transition"></div>
             </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm">
-                    <div class="overflow-hidden mb-4 h-40 md:h-48">
-                        <img src="ach1.jpeg" alt="Media Recognition" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-3 md:p-4">
-                        <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight">Media Recognition</h3>
-                        <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">Gained prominent recognition in regional print media for sustainable farming and contribution to Koraput's plantation agriculture.</p>
-                    </div>
-                </div>
-                <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm">
-                    <div class="overflow-hidden mb-4 h-40 md:h-48">
-                        <img src="ach2.jpeg" alt="National Reach" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-3 md:p-4">
-                        <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight">National Branding</h3>
-                        <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">First-ever introduction of private estate Koraput coffee to a national platform, showcasing unique aroma and flavor.</p>
-                    </div>
-                </div>
-                <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm">
-                    <div class="overflow-hidden mb-4 h-40 md:h-48">
-                        <img src="ach3.jpeg" alt="Voice of the Farmer" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-3 md:p-4">
-                        <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight">Voice of the Farmer</h3>
-                        <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">Actively sharing real field experiences, challenges, and success stories directly from the soil to the public eye.</p>
-                    </div>
-                </div>
-                <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm">
-                    <div class="overflow-hidden mb-4 h-40 md:h-48">
-                        <img src="ach4.jpeg" alt="Quality Recognition" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    </div>
-                    <div class="p-3 md:p-4">
-                        <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight">Roaster Acknowledgment</h3>
-                        <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">Strong acknowledgment from professional roasters, a testament to the consistency and craftsmanship of our harvest.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Gallery -->
-    <section id="gallery" class="py-16 md:py-24 bg-black/5 transition-colors duration-700">
+            <div class="space-y-16 md:space-y-24">
+                <!-- Step 1 & 2 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-12">
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">01</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">1️⃣ Plantation & Natural Growth</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">Our journey begins in rich, fertile soil where coffee and pepper plants grow under natural shade. The estate follows traditional farming practices that respect the land, climate, and biodiversity.</p>
+                        </div>
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">02</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">2️⃣ Flowering Stage</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">Seasonal rains trigger beautiful white coffee blossoms and healthy pepper spikes. This stage defines the future quality and aroma of the produce.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 h-[400px]">
+                        <img src="process/p1.jpeg" alt="Plantation" class="w-full h-full object-cover rounded-sm shadow-lg">
+                        <img src="process/p2.jpeg" alt="Flowering" class="w-full h-full object-cover rounded-sm shadow-lg mt-8">
+                    </div>
+                </div>
+
+                <!-- Step 3 & 4 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1 grid grid-cols-2 gap-4 h-[400px]">
+                        <img src="process/p3.jpeg" alt="Development" class="w-full h-full object-cover rounded-sm shadow-lg mt-8">
+                        <img src="process/p4.jpeg" alt="Harvesting" class="w-full h-full object-cover rounded-sm shadow-lg">
+                    </div>
+                    <div class="order-1 md:order-2 space-y-12">
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">03</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">3️⃣ Cherry & Pepper Development</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">Coffee cherries slowly ripen from green to deep red, while pepper berries mature on climbing vines. Careful monitoring ensures optimal ripeness.</p>
+                        </div>
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">04</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">4️⃣ Hand Harvesting</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">Only mature coffee cherries and healthy pepper spikes are handpicked. This selective harvesting preserves flavor integrity and ensures premium quality.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 & 6 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-12">
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">05</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">5️⃣ Sun Drying</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">Freshly harvested produce is naturally sun-dried on raised mats. This slow, traditional drying process enhances aroma and shelf stability without artificial heat.</p>
+                        </div>
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">06</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">6️⃣ Processing & Sorting</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">Coffee beans are hulled and graded, while peppercorns are cleaned and sorted. Defective or broken produce is removed to maintain consistency.</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 h-[400px]">
+                        <img src="process/p5.jpeg" alt="Sun Drying" class="w-full h-full object-cover rounded-sm shadow-lg">
+                        <img src="process/p6.jpeg" alt="Sorting" class="w-full h-full object-cover rounded-sm shadow-lg mt-8">
+                    </div>
+                </div>
+
+                <!-- Step 7 & 8 -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1 grid grid-cols-2 gap-4 h-[400px]">
+                        <img src="process/p7.jpeg" alt="Final Product" class="w-full h-full object-cover rounded-sm shadow-lg mt-8">
+                        <img src="process/p8.jpeg" alt="Legacy" class="w-full h-full object-cover rounded-sm shadow-lg">
+                    </div>
+                    <div class="order-1 md:order-2 space-y-12">
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">07</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">7️⃣ Final Green Beans & Peppercorns</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">The result is high-quality green coffee beans and bold, aromatic peppercorns—ready for roasting, trading, or further artisanal processing.</p>
+                        </div>
+                        <div class="relative pl-12 group">
+                            <span class="absolute left-0 top-0 text-5xl font-serif opacity-10 group-hover:opacity-20 transition-opacity text-black">08</span>
+                            <h3 class="text-2xl font-serif mb-3 text-black font-bold">8️⃣ Farm to Legacy</h3>
+                            <p class="text-sm opacity-70 leading-relaxed text-black">Every batch carries the story of our land, our people, and generations of farming knowledge—crafted with patience, pride, and purity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cinematic Blooming Video Section -->
+        <section id="blooming-video" class="py-24 bg-black text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png')"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="lg:w-1/2 space-y-8">
+                        <div>
+                            <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-white/60">Cinematic Process</span>
+                            <h2 class="text-4xl md:text-6xl font-serif mt-4 text-white font-bold leading-tight italic">The Symphony of Blossoms</h2>
+                        </div>
+                        <p class="text-lg opacity-80 leading-relaxed font-light">
+                            Witness the breathtaking lifecycle of our coffee plants before fruiting begins. From the synchronized white blossoms that blanket the estate like mountain snow to the gradual awakening of the seasonal harvest cycle. 
+                        </p>
+                        <div class="flex items-center space-x-6">
+                            <div class="flex items-center space-x-2">
+                                <i data-lucide="flower-2" class="w-4 h-4 text-accent"></i>
+                                <span class="text-[10px] uppercase tracking-widest font-bold opacity-60">Blooming Phase</span>
+                            </div>
+                            <div class="w-px h-6 bg-white/20"></div>
+                            <div class="flex items-center space-x-2">
+                                <i data-lucide="timer" class="w-4 h-4 text-accent"></i>
+                                <span class="text-[10px] uppercase tracking-widest font-bold opacity-60">Pre-Fruiting Cycle</span>
+                            </div>
+                        </div>
+                        <button onclick="showVideo('pv1')" class="group flex items-center px-10 py-5 bg-white text-black font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-accent hover:text-white transition-all shadow-xl active:scale-95">
+                            Play Documentary <i data-lucide="play-circle" class="ml-4 w-5 h-5 transition-transform group-hover:scale-110"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="lg:w-1/2 w-full relative">
+                        <div class="relative group cursor-pointer overflow-hidden rounded-sm shadow-2xl border-[10px] border-white/5" onclick="showVideo('pv1')">
+                            <!-- Thumbnail as p2.jpeg -->
+                            <img src="process/p2.jpeg" alt="The Blooming Stage" class="w-full aspect-[4/5] object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors">
+                                <div class="w-24 h-24 rounded-full bg-white/10 backdrop-blur-xl border border-white/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i data-lucide="play" class="text-white fill-white w-10 h-10 ml-1.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Milestones -->
+        <section id="milestones" class="py-16 md:py-24 px-4 sm:px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 md:mb-16">
+                    <i data-lucide="award" class="mx-auto mb-4 text-accent w-8 h-8 md:w-10 md:h-10 transition-colors duration-700"></i>
+                    <h2 class="text-3xl md:text-4xl font-serif text-black font-bold">Estate Milestones</h2>
+                    <div class="w-16 md:w-20 h-1 bg-secondary mx-auto mt-4 md:mt-6 opacity-30 theme-transition"></div>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-16">
+                    <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm shadow-sm">
+                        <div class="overflow-hidden mb-4 h-40 md:h-48">
+                            <img src="ach1.jpeg" alt="Media Recognition" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-3 md:p-4 text-black">
+                            <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight font-bold">Media Recognition</h3>
+                            <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">Gained prominent recognition in regional print media for sustainable farming and contribution to Koraput's plantation agriculture.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm shadow-sm">
+                        <div class="overflow-hidden mb-4 h-40 md:h-48">
+                            <img src="ach2.jpeg" alt="National Reach" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-3 md:p-4 text-black">
+                            <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight font-bold">National Branding</h3>
+                            <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">First-ever introduction of private estate Koraput coffee to a national platform, showcasing unique aroma and flavor.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm shadow-sm">
+                        <div class="overflow-hidden mb-4 h-40 md:h-48">
+                            <img src="ach3.jpeg" alt="Voice of the Farmer" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-3 md:p-4 text-black">
+                            <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight font-bold">Voice of the Farmer</h3>
+                            <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">Actively sharing real field experiences, challenges, and success stories directly from the soil to the public eye.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-theme p-2 group hover:shadow-xl transition-all duration-500 rounded-sm shadow-sm">
+                        <div class="overflow-hidden mb-4 h-40 md:h-48">
+                            <img src="ach4.jpeg" alt="Quality Recognition" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        </div>
+                        <div class="p-3 md:p-4 text-black">
+                            <h3 class="font-serif text-lg md:text-xl mb-2 leading-tight font-bold">Roaster Acknowledgment</h3>
+                            <p class="text-xs md:text-sm opacity-70 leading-relaxed text-black">Strong acknowledgment from professional roasters, a testament to the consistency and craftsmanship of our harvest.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estate Documentaries Grid -->
+                <div class="border-t border-theme pt-16">
+                    <div class="text-center mb-12 text-black">
+                        <h3 class="text-2xl font-serif font-bold">Estate Documentaries</h3>
+                        <p class="text-[10px] uppercase tracking-[0.3em] opacity-40 mt-2">Stories from the Koraput hills</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div class="bg-white border border-theme p-6 rounded-sm shadow-sm group hover:border-primary transition-all">
+                            <div class="relative h-48 bg-black mb-6 flex items-center justify-center overflow-hidden rounded-sm shadow-inner">
+                                <div class="absolute inset-0 bg-cover bg-center opacity-40 scale-105 transition-transform duration-700 group-hover:scale-110" style="background-image: url('owner.jpeg')"></div>
+                                <button onclick="showVideo('v1')" class="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 hover:scale-110 transition-transform group-hover:bg-primary group-hover:border-primary">
+                                    <i data-lucide="play" class="text-white fill-white w-6 h-6 ml-1"></i>
+                                </button>
+                            </div>
+                            <h4 class="font-serif text-xl mb-2 text-black font-bold">The Koraput Legacy</h4>
+                            <p class="text-xs opacity-60 mb-6 leading-relaxed text-black">A visual exploration of the estate's origins and its impact on regional agriculture since 1998.</p>
+                            <button onclick="showVideo('v1')" class="text-[10px] font-bold uppercase tracking-widest text-accent flex items-center group-hover:underline">
+                                Watch Video <i data-lucide="arrow-right" class="ml-2 w-3 h-3"></i>
+                            </button>
+                        </div>
+                        <div class="bg-white border border-theme p-6 rounded-sm shadow-sm group hover:border-primary transition-all">
+                            <div class="relative h-48 bg-black mb-6 flex items-center justify-center overflow-hidden rounded-sm shadow-inner">
+                                <div class="absolute inset-0 bg-cover bg-center opacity-40 scale-105 transition-transform duration-700 group-hover:scale-110" style="background-image: url('owner.jpeg')"></div>
+                                <button onclick="showVideo('v2')" class="relative z-10 w-16 h-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 hover:scale-110 transition-transform group-hover:bg-primary group-hover:border-primary">
+                                    <i data-lucide="play" class="text-white fill-white w-6 h-6 ml-1"></i>
+                                </button>
+                            </div>
+                            <h4 class="font-serif text-xl mb-2 text-black font-bold">The Art of Cultivation</h4>
+                            <p class="text-xs opacity-60 mb-6 leading-relaxed text-black">Following the journey of a coffee cherry from the Koraput soil to professional Mumbai roasteries.</p>
+                            <button onclick="showVideo('v2')" class="text-[10px] font-bold uppercase tracking-widest text-accent flex items-center group-hover:underline">
+                                Watch Video <i data-lucide="arrow-right" class="ml-2 w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Preview -->
+        <section id="gallery" class="py-16 md:py-24 bg-black/5 transition-colors duration-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-4 text-left">
+                    <div class="max-w-md">
+                        <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-accent transition-colors duration-700">Perspective</span>
+                        <h2 class="text-3xl md:text-4xl font-serif mt-2 text-black font-bold leading-tight">Life at Durga Madhab</h2>
+                    </div>
+                    <p class="text-xs opacity-50 italic hidden md:block text-black">Capturing the harmony of man and soil.</p>
+                </div>
+                
+                <div class="gallery-columns text-left mb-12">
+                    <div class="gallery-item relative group overflow-hidden rounded-sm"><img src="pic1.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                    <div class="gallery-item relative group overflow-hidden rounded-sm"><img src="pic2.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                    <div class="gallery-item relative group overflow-hidden rounded-sm"><img src="pic3.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                    <div class="gallery-item relative group overflow-hidden rounded-sm"><img src="pic4.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                    <div class="gallery-item relative group overflow-hidden rounded-sm"><img src="pic5.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                    <div class="gallery-item relative group overflow-hidden rounded-sm"><img src="pic6.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                </div>
+
+                <button onclick="showView('gallery')" class="inline-flex items-center px-8 py-4 border border-current font-bold uppercase text-[10px] tracking-[0.3em] hover:bg-primary hover:text-white transition-all text-black">
+                    View Full Gallery <i data-lucide="arrow-right" class="ml-3 w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 px-4 sm:px-6">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white border border-theme shadow-lg overflow-hidden rounded-sm transition-colors duration-700">
+                    <div class="bg-primary text-white p-8 md:p-16 text-center theme-transition text-white">
+                        <h2 class="text-3xl md:text-4xl font-serif mb-4 font-bold text-white">Reach the Estate</h2>
+                        <p class="text-[10px] uppercase tracking-[0.4em] opacity-50 mb-12">Legacy • Purity • Nature</p>
+                        <div class="grid gap-10 md:grid-cols-3 text-center">
+                            <div class="flex flex-col items-center">
+                                <div class="mb-4 p-3 rounded-full bg-white/5"><i data-lucide="map-pin" class="opacity-60 w-6 h-6"></i></div>
+                                <p class="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-2">Location</p>
+                                <p class="text-sm leading-relaxed">Mastiput, Desnaikguda,<br>Koraput 764020</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="mb-4 p-3 rounded-full bg-white/5"><i data-lucide="phone" class="opacity-60 w-6 h-6"></i></div>
+                                <p class="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-2">Enquiries</p>
+                                <p class="text-sm">+91 70086 11923</p>
+                                <p class="text-sm">+91 94372 15567</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="mb-4 p-3 rounded-full bg-white/5"><i data-lucide="mail" class="opacity-60 w-6 h-6"></i></div>
+                                <p class="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-2">Email</p>
+                                <p class="text-sm break-all text-[10px] md:text-xs">durgamadhabcoffeepepperestate@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="mt-16 pt-8 border-t border-white/10 opacity-40 text-[9px] uppercase tracking-widest">
+                            Visits are strictly by appointment only.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 border-t border-theme px-4 sm:px-6 text-center transition-colors duration-700">
+            <div class="max-w-7xl mx-auto text-black text-center">
+                <h4 class="font-serif text-xl md:text-2xl mb-2 font-bold">Durga Madhab Estate</h4>
+                <p class="text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] opacity-50">Legacy • Purity • Nature</p>
+                <div class="w-12 h-px bg-secondary mx-auto my-6 opacity-30 theme-transition"></div>
+                <p class="text-[9px] opacity-40 uppercase tracking-widest leading-loose">© 2024 Durga Madhab Coffee and Pepper Estate.<br class="sm:hidden"> All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Extended Gallery View -->
+    <div id="full-gallery-view" class="view-section hidden pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-4">
-                <div class="max-w-md">
-                    <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-accent transition-colors duration-700">Perspective</span>
-                    <h2 class="text-3xl md:text-4xl font-serif mt-2">Life at Durga Madhab</h2>
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-theme pb-8 gap-6">
+                <div class="text-center md:text-left">
+                    <button onclick="showView('home')" class="flex items-center text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity mb-2 text-black">
+                        <i data-lucide="arrow-left" class="mr-2 w-4 h-4"></i> Back to Estate Overview
+                    </button>
+                    <h2 class="text-4xl md:text-5xl font-serif text-black font-bold">Heritage Gallery</h2>
                 </div>
-                <p class="text-xs opacity-50 italic hidden md:block">Capturing the harmony of man and soil.</p>
+                <p class="text-sm opacity-60 max-w-sm text-center md:text-right italic text-black font-light leading-relaxed">"A visual journey through the soul of Koraput’s finest plantation heritage."</p>
             </div>
-            
             <div class="gallery-columns">
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic1.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 1">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic2.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 2">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic3.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 3">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic4.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 4">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic5.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 5">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic6.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 6">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic7.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 7">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic8.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 8">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic9.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 9">
-                </div>
-                <div class="gallery-item relative group overflow-hidden rounded-sm">
-                    <img src="pic10.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Estate View 10">
+                <!-- Batch 1 -->
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.47 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.47 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.48 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.48 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.49 PM.jpg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.49 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.50 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.50 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.55 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.01.56 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <!-- Batch 2 -->
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.03 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.04 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.04 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.05 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.05 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.06 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.06 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.07 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.07 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.08 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <!-- Batch 3 -->
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.09 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.09 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.13 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.14 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.15 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.15 PM (2).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.16 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.17 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.18 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.19 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <!-- Batch 4 -->
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.19 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.20 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.21 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.21 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.21 PM (2).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.23 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.24 PM (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.26 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.28 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                <div class="gallery-item rounded-sm overflow-hidden group shadow-sm"><img src="photos/WhatsApp Image 2025-12-28 at 10.03.29 PM.jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+            </div>
+            <div class="mt-20 text-center border-t border-theme pt-12">
+                <button onclick="showView('home')" class="px-12 py-4 bg-primary text-white font-bold uppercase text-[10px] tracking-[0.3em] hover:shadow-lg transition-all theme-transition text-white">
+                    Return to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cinematic Video View Section -->
+    <div id="video-view" class="view-section hidden pt-24 min-h-screen">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showView('home')" class="flex items-center text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity mb-8 text-black" id="video-back-btn">
+                <i data-lucide="arrow-left" class="mr-2 w-4 h-4"></i> Back to Estate Overview
+            </button>
+            <div class="bg-black aspect-video w-full rounded-sm shadow-2xl overflow-hidden relative group">
+                <video id="main-video-player" class="w-full h-full" controls poster="owner.jpeg">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="mt-12 text-center md:text-left text-black">
+                <h2 id="video-title" class="text-3xl md:text-5xl font-serif mb-4 font-bold text-black">Video Title</h2>
+                <p id="video-desc" class="text-base opacity-60 max-w-2xl leading-relaxed text-black font-light">Video description goes here...</p>
+                <div class="mt-12 pt-8 border-t border-theme flex flex-col md:flex-row gap-8 items-center justify-between">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest font-bold opacity-40 mb-2 text-black">Now Playing</p>
+                        <p class="text-sm font-serif italic text-accent" id="video-now-playing-label">Cinematic Documentary</p>
+                    </div>
+                    <button onclick="showView('home')" class="px-10 py-4 bg-primary text-white font-bold uppercase text-[10px] tracking-[0.3em] hover:shadow-xl transition-all theme-transition text-white">
+                        Return to Home
+                    </button>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Details Section -->
-    <section id="contact" class="py-16 md:py-24 px-4 sm:px-6">
-        <div class="max-w-3xl mx-auto">
-            <div class="bg-white border border-theme shadow-lg overflow-hidden rounded-sm transition-colors duration-700">
-                <div class="bg-primary text-white p-8 md:p-16 text-center theme-transition">
-                    <h2 class="text-3xl md:text-4xl font-serif mb-4">Reach the Estate</h2>
-                    <p class="text-[10px] uppercase tracking-[0.4em] opacity-50 mb-12">Legacy • Purity • Nature</p>
-                    
-                    <div class="grid gap-10 md:grid-cols-3 text-center">
-                        <div class="flex flex-col items-center">
-                            <div class="mb-4 p-3 rounded-full bg-white/5">
-                                <i data-lucide="map-pin" class="opacity-60 w-6 h-6"></i>
-                            </div>
-                            <p class="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-2">Location</p>
-                            <p class="text-sm leading-relaxed">Mastiput, Desnaikguda,<br>Koraput 764020</p>
-                        </div>
-                        
-                        <div class="flex flex-col items-center">
-                            <div class="mb-4 p-3 rounded-full bg-white/5">
-                                <i data-lucide="phone" class="opacity-60 w-6 h-6"></i>
-                            </div>
-                            <p class="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-2">Enquiries</p>
-                            <p class="text-sm">81445 67743</p>
-                        </div>
-                        
-                        <div class="flex flex-col items-center">
-                            <div class="mb-4 p-3 rounded-full bg-white/5">
-                                <i data-lucide="mail" class="opacity-60 w-6 h-6"></i>
-                            </div>
-                            <p class="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-2">Email</p>
-                            <p class="text-sm break-all text-xs">durgamadhabcoffeepepperestate<br class="hidden md:block">@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-16 pt-8 border-t border-white/10">
-                        <p class="text-[9px] uppercase tracking-widest opacity-40">Visits are strictly by appointment only.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-theme px-4 sm:px-6 text-center transition-colors duration-700">
-        <div class="max-w-7xl mx-auto">
-            <h4 class="font-serif text-xl md:text-2xl mb-2">Durga Madhab Estate</h4>
-            <p class="text-[9px] md:text-[10px] uppercase tracking-[0.4em] md:tracking-[0.5em] opacity-50">Legacy • Purity • Nature</p>
-            <div class="w-12 h-px bg-secondary mx-auto my-6 opacity-30 theme-transition"></div>
-            <p class="text-[9px] opacity-40 uppercase tracking-widest leading-loose">© 2024 Durga Madhab Coffee and Pepper Estate.<br class="sm:hidden"> All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
         let isPepperMode = false;
+
+        const videoContent = {
+            v1: {
+                title: "The Koraput Legacy",
+                desc: "A cinematic journey exploring the origins of Durga Madhab Estate. Witness the transformation of the landscape from 1998 to the present day, documenting the stewardship of Trilochan Satapathy and the growth of our 15-acre plantation.",
+                src: "videos/v1.mp4",
+                poster: "owner.jpeg"
+            },
+            v2: {
+                title: "The Art of Cultivation",
+                desc: "Go behind the scenes of our seasonal harvest. This documentary captures the meticulous process of shade-grown farming, organic processing, and the craftsmanship that brings Koraput's unique flavor profile to life.",
+                src: "videos/v2.mp4",
+                poster: "owner.jpeg"
+            },
+            pv1: {
+                title: "The Blooming and Fruiting of Coffee",
+                desc: "Witness the breathtaking lifecycle of our coffee plants. From the synchronized white blossoms that blanket the estate like mountain snow to the gradual development of our vibrant red coffee cherries, this documentary brings you deep into the heart of the seasonal harvest cycle.",
+                src: "process/pv1.mp4",
+                poster: "process/p2.jpeg"
+            }
+        };
+
+        function showVideo(videoId) {
+            const video = videoContent[videoId];
+            const player = document.getElementById('main-video-player');
+            const source = player.querySelector('source');
+            
+            document.getElementById('video-title').innerText = video.title;
+            document.getElementById('video-desc').innerText = video.desc;
+            document.getElementById('video-now-playing-label').innerText = video.title;
+            player.poster = video.poster;
+            source.src = video.src;
+            
+            player.load();
+            showView('video');
+        }
+
+        function showView(view) {
+            const home = document.getElementById('home-view');
+            const gallery = document.getElementById('full-gallery-view');
+            const videoView = document.getElementById('video-view');
+            const player = document.getElementById('main-video-player');
+            
+            home.classList.add('hidden');
+            gallery.classList.add('hidden');
+            videoView.classList.add('hidden');
+            
+            if (view !== 'video') {
+                player.pause();
+            }
+
+            if (view === 'gallery') {
+                gallery.classList.remove('hidden');
+                updateNavbarStyle(true);
+            } else if (view === 'video') {
+                videoView.classList.remove('hidden');
+                updateNavbarStyle(true);
+            } else {
+                home.classList.remove('hidden');
+                updateNavbarStyle(window.scrollY > 50);
+            }
+            
+            window.scrollTo(0, 0);
+            lucide.createIcons();
+        }
 
         function toggleTheme() {
             const body = document.body;
@@ -435,26 +747,18 @@
                 toggleText.innerText = 'Pepper Mode';
                 btn.style.backgroundColor = '#2d4a22';
                 mobileBtn.style.backgroundColor = '#2d4a22';
-                
-                // Update Icons
                 toggleIcon.setAttribute('data-lucide', 'leaf');
                 mobileToggleIcon.setAttribute('data-lucide', 'leaf');
                 visionIcon.setAttribute('data-lucide', 'leaf');
-                
-                // Update Image
                 aboutImg.src = "https://images.unsplash.com/photo-1599147781034-2e403d577174?auto=format&fit=crop&q=80&w=800";
             } else {
                 body.classList.remove('pepper-mode');
                 toggleText.innerText = 'Coffee Mode';
                 btn.style.backgroundColor = '#8b5e3c';
                 mobileBtn.style.backgroundColor = '#8b5e3c';
-                
-                // Update Icons
                 toggleIcon.setAttribute('data-lucide', 'coffee');
                 mobileToggleIcon.setAttribute('data-lucide', 'coffee');
                 visionIcon.setAttribute('data-lucide', 'coffee');
-
-                // Update Image
                 aboutImg.src = "WhatsApp Image 2025-12-28 at 9.32.12 PM.jpeg";
             }
             lucide.createIcons();
@@ -465,8 +769,6 @@
             const icon = document.getElementById('menu-icon');
             menu.classList.toggle('active');
             menu.classList.toggle('hidden');
-            
-            // Toggle menu icon
             if (menu.classList.contains('active')) {
                 icon.setAttribute('data-lucide', 'x');
             } else {
@@ -475,34 +777,52 @@
             lucide.createIcons();
         }
 
-        // Navbar Scroll Logic
-        window.addEventListener('scroll', () => {
+        function updateNavbarStyle(isScrolled) {
             const nav = document.getElementById('navbar');
             const logoMain = document.getElementById('nav-logo-main');
             const logoSub = document.getElementById('nav-logo-sub');
             const navLinks = document.querySelectorAll('.nav-link');
             const menuBtn = document.getElementById('menu-btn');
             const mobileThemeBtn = document.getElementById('mobile-theme-btn');
+            
+            const isExtendedView = !document.getElementById('full-gallery-view').classList.contains('hidden') || 
+                                  !document.getElementById('video-view').classList.contains('hidden');
 
-            if (window.scrollY > 50) {
+            if (isScrolled || isExtendedView) {
                 nav.classList.add('bg-white', 'shadow-lg', 'py-3');
                 nav.classList.remove('py-4', 'md:py-6');
-                logoMain.classList.replace('text-white', 'text-black');
-                logoSub.classList.replace('text-white', 'text-black');
-                menuBtn.classList.replace('text-white', 'text-black');
+                logoMain.classList.add('text-black');
+                logoMain.classList.remove('text-white');
+                logoSub.classList.add('text-black');
+                logoSub.classList.remove('text-white');
+                menuBtn.classList.add('text-black');
+                menuBtn.classList.remove('text-white');
                 mobileThemeBtn.classList.remove('bg-white/10');
                 mobileThemeBtn.classList.add('bg-black/5');
-                navLinks.forEach(l => l.classList.replace('text-white', 'text-black'));
+                navLinks.forEach(l => {
+                    l.classList.add('text-black');
+                    l.classList.remove('text-white');
+                });
             } else {
                 nav.classList.remove('bg-white', 'shadow-lg', 'py-3');
                 nav.classList.add('py-4', 'md:py-6');
-                logoMain.classList.replace('text-black', 'text-white');
-                logoSub.classList.replace('text-black', 'text-white');
-                menuBtn.classList.replace('text-black', 'text-white');
+                logoMain.classList.remove('text-black');
+                logoMain.classList.add('text-white');
+                logoSub.classList.remove('text-black');
+                logoSub.classList.add('text-white');
+                menuBtn.classList.remove('text-black');
+                menuBtn.classList.add('text-white');
                 mobileThemeBtn.classList.add('bg-white/10');
                 mobileThemeBtn.classList.remove('bg-black/5');
-                navLinks.forEach(l => l.classList.replace('text-black', 'text-white'));
+                navLinks.forEach(l => {
+                    l.classList.remove('text-black');
+                    l.classList.add('text-white');
+                });
             }
+        }
+
+        window.addEventListener('scroll', () => {
+            updateNavbarStyle(window.scrollY > 50);
         });
     </script>
 </body>
