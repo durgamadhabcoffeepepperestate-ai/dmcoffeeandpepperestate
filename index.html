@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Durga Madhab Coffee &amp; Pepper Estate | Raw Coffee Beans from Koraput</title>
-    <meta name="description" content="Durga Madhab Coffee & Pepper Estate, Koraput, Odisha. Estate-grown, hand-picked, sun-dried raw coffee beans since 1998. Order 200 g and 500 g packs online via WhatsApp.">
+    <title>Durga Madhab Coffee &amp; Pepper Estate | Roasted Coffee Beans from Koraput</title>
+    <meta name="description" content="Roasted coffee beans from Durga Madhab Coffee & Pepper Estate, Koraput, Odisha. Estate-grown and hand-picked since 1998. Order 200 g and 500 g packs online via WhatsApp.">
     <link rel="canonical" href="https://dmcoffeeandpepperestate.com/">
     <meta name="theme-color" content="#4b3621">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234b3621'/%3E%3Cg transform='rotate(-30 32 32)'%3E%3Cellipse cx='32' cy='32' rx='13' ry='19' fill='%23d9b38c'/%3E%3Cpath d='M29 14c8 9-4 27 6 36' stroke='%234b3621' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E">
     <!-- Link previews on WhatsApp, Facebook, LinkedIn, X -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Durga Madhab Coffee &amp; Pepper Estate">
-    <meta property="og:title" content="Raw coffee beans from the Koraput hills">
-    <meta property="og:description" content="Estate-grown, hand-picked and sun-dried since 1998. Order online via WhatsApp.">
+    <meta property="og:title" content="Roasted coffee beans from the Koraput hills">
+    <meta property="og:description" content="Estate-grown, hand-picked and roasted. Notes of cocoa almond, milk chocolate and dry fruit. Order online via WhatsApp.">
     <meta property="og:url" content="https://dmcoffeeandpepperestate.com/">
     <meta property="og:image" content="https://dmcoffeeandpepperestate.com/process/p6.jpeg">
     <meta property="og:locale" content="en_IN">
@@ -152,7 +152,16 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 0.75rem; font-weight: 600; background: rgba(139,94,60,0.12); color: var(--accent);
         }
-        @media (prefers-reduced-motion: reduce) { .dm-pack, .dm-wa-btn, .dm-field { transition: none; } }
+        .dm-add {
+            height: 2.5rem; padding: 0 1.5rem; border-radius: 999px; background: var(--primary); color: #fff;
+            font-size: 0.875rem; font-weight: 600; transition: filter .15s, transform .1s;
+        }
+        .dm-add:hover { filter: brightness(1.15); }
+        .dm-add:active { transform: scale(0.97); }
+        .dm-add:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+        .dm-stepper.hidden, .dm-add.hidden, .dm-err.hidden { display: none; }   /* hidden always wins, whatever loads last */
+        .dm-err { display: block; margin-top: 0.3rem; font-size: 0.75rem; font-weight: 500; color: #b91c1c; }
+        @media (prefers-reduced-motion: reduce) { .dm-pack, .dm-wa-btn, .dm-field, .dm-add { transition: none; } }
     </style>
 </head>
 <body class="selection:bg-black selection:text-white max-w-full-viewport">
@@ -309,9 +318,9 @@
             <div class="max-w-6xl mx-auto">
                 <div class="max-w-2xl mb-10 md:mb-14">
                     <span class="text-[10px] font-bold tracking-[0.4em] uppercase text-accent transition-colors duration-700">Taste the Estate</span>
-                    <h2 class="text-3xl md:text-5xl font-serif mt-2 text-black font-bold leading-tight">Raw coffee, straight from our estate</h2>
+                    <h2 class="text-3xl md:text-5xl font-serif mt-2 text-black font-bold leading-tight">Roasted coffee, straight from our estate</h2>
                     <p class="mt-4 text-base md:text-lg opacity-75 leading-relaxed">
-                        Green coffee beans from our Koraput estate, hand-picked and sun-dried. Roast them your way.
+                        Grown in the shade of the Koraput hills, hand-picked, sun-dried and roasted. Notes of cocoa almond, milk chocolate and dry fruit.
                     </p>
                     <noscript><p class="mt-4 text-sm font-semibold">Please enable JavaScript to order online, or call +91 81445 67743.</p></noscript>
                 </div>
@@ -331,12 +340,13 @@
                                 <div class="dm-product dm-pack" data-sku="200g">
                                     <div class="min-w-0">
                                         <p class="font-serif text-2xl font-bold leading-none">200 g</p>
-                                        <p class="text-sm opacity-70 mt-1.5">For home roasting or a first taste</p>
+                                        <p class="text-sm opacity-70 mt-1.5">A first taste, or a gift</p>
                                     </div>
                                     <div class="flex items-center gap-4 sm:gap-6">
                                         <span class="dm-price text-lg font-semibold tabular-nums">₹300</span>
                                         <span class="dm-soldout hidden text-xs font-semibold text-red-700">Out of stock</span>
-                                        <div class="dm-stepper">
+                                        <button type="button" class="dm-add" aria-label="Add a 200 g pack">Add</button>
+                                        <div class="dm-stepper hidden">
                                             <button type="button" class="dm-step" data-step="-1" aria-label="Fewer 200 g packs">&minus;</button>
                                             <input type="number" class="dm-qty" min="0" max="20" value="0" inputmode="numeric" aria-label="Number of 200 g packs">
                                             <button type="button" class="dm-step" data-step="1" aria-label="More 200 g packs">+</button>
@@ -346,12 +356,13 @@
                                 <div class="dm-product dm-pack" data-sku="500g">
                                     <div class="min-w-0">
                                         <p class="font-serif text-2xl font-bold leading-none">500 g</p>
-                                        <p class="text-sm opacity-70 mt-1.5">For regular roasters and cafés</p>
+                                        <p class="text-sm opacity-70 mt-1.5">For your daily brew</p>
                                     </div>
                                     <div class="flex items-center gap-4 sm:gap-6">
                                         <span class="dm-price text-lg font-semibold tabular-nums">₹750</span>
                                         <span class="dm-soldout hidden text-xs font-semibold text-red-700">Out of stock</span>
-                                        <div class="dm-stepper">
+                                        <button type="button" class="dm-add" aria-label="Add a 500 g pack">Add</button>
+                                        <div class="dm-stepper hidden">
                                             <button type="button" class="dm-step" data-step="-1" aria-label="Fewer 500 g packs">&minus;</button>
                                             <input type="number" class="dm-qty" min="0" max="20" value="0" inputmode="numeric" aria-label="Number of 500 g packs">
                                             <button type="button" class="dm-step" data-step="1" aria-label="More 500 g packs">+</button>
@@ -359,7 +370,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-4 text-sm opacity-75">Buying for a café or roastery? Call <a href="tel:+918144567743" class="font-semibold text-accent underline underline-offset-2">+91 81445 67743</a> for bulk prices.</p>
+                            <p class="mt-4 text-sm opacity-75">Buying for a café, office or shop? Call <a href="tel:+918144567743" class="font-semibold text-accent underline underline-offset-2">+91 81445 67743</a> for bulk prices.</p>
                         </fieldset>
                     </div>
 
@@ -387,7 +398,7 @@
                                         <label class="dm-label col-span-2">Mobile number
                                             <input name="phone" required type="tel" autocomplete="tel-national" inputmode="tel" maxlength="16" placeholder="10-digit mobile" class="dm-field">
                                         </label>
-                                        <label class="dm-label col-span-2">House, street and area
+                                        <label class="dm-label col-span-2">House no., street and area
                                             <textarea name="address" required rows="2" autocomplete="street-address" class="dm-field resize-none"></textarea>
                                         </label>
                                         <label class="dm-label">City
@@ -427,7 +438,10 @@
                             <p class="text-sm opacity-75 mt-3 leading-relaxed">Your order <b id="dm-sent-id"></b> for <b id="dm-sent-amt"></b> is waiting in WhatsApp. Once you send it, we'll reply with the payment details and delivery time.</p>
                             <a id="dm-send-again" href="#" target="_blank" rel="noopener" class="dm-wa-btn mt-6">Open WhatsApp again</a>
                             <p class="text-sm opacity-75 mt-4">No WhatsApp? <a id="dm-send-mail" href="#" class="underline underline-offset-2">Send by email</a> or call <a href="tel:+918144567743" class="underline underline-offset-2">+91 81445 67743</a>.</p>
-                            <button type="button" id="dm-new" class="mt-6 text-sm font-semibold text-accent underline underline-offset-2">Start a new order</button>
+                            <div class="mt-6 flex justify-center gap-6 text-sm font-semibold">
+                                <button type="button" id="dm-edit" class="text-accent underline underline-offset-2">Edit this order</button>
+                                <button type="button" id="dm-new" class="text-accent underline underline-offset-2">Start a new order</button>
+                            </div>
                         </div>
                     </aside>
                 </form>
@@ -1023,7 +1037,7 @@
     <!-- ============ Shop: WhatsApp ordering ============ -->
     <!-- Mobile "Buy" bar: appears after the hero, hides when the shop is on screen -->
     <a href="#shop" id="dm-buy-bar" class="md:hidden fixed bottom-4 left-4 right-4 z-[90] flex items-center justify-between px-5 py-4 bg-primary text-white shadow-2xl rounded-sm theme-transition translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
-        <span class="text-sm font-serif italic">Raw coffee from ₹300</span>
+        <span class="text-sm font-serif italic">Roasted coffee from ₹300</span>
         <span class="text-[10px] font-bold uppercase tracking-[0.25em]">Buy Now &rarr;</span>
     </a>
     <script>
@@ -1039,8 +1053,8 @@
         closedMessage: 'Online orders are paused for a short while. Please call +91 81445 67743 to order.',
         maxQty:    20,
         products: {
-            '200g': { name: 'Raw Coffee Beans – 200 g', price: 300, available: true },
-            '500g': { name: 'Raw Coffee Beans – 500 g', price: 750, available: true }
+            '200g': { name: 'Roasted Coffee Beans', size: '200 g', price: 300, available: true },
+            '500g': { name: 'Roasted Coffee Beans', size: '500 g', price: 750, available: true }
         }
     };
     /* ===================================================================== */
@@ -1069,8 +1083,12 @@
             if (!p) { card.classList.add('hidden'); return; }
             card.querySelector('.dm-price').textContent = inr(p.price);
             card.querySelector('.dm-soldout').classList.toggle('hidden', p.available);
-            card.querySelector('.dm-stepper').classList.toggle('hidden', !p.available);
+            card.querySelector('.dm-add').classList.toggle('hidden', !p.available);
             card.classList.toggle('opacity-60', !p.available);
+            card.querySelector('.dm-add').addEventListener('click', function () {
+                input.value = 1; update();
+                card.querySelector('.dm-step[data-step="1"]').focus();
+            });
             input.max = SHOP.maxQty;
             input.disabled = !p.available;
             card.querySelectorAll('.dm-step').forEach(function (b) {
@@ -1079,6 +1097,7 @@
                     if (!p.available) return;
                     input.value = Math.min(SHOP.maxQty, Math.max(0, (parseInt(input.value, 10) || 0) + +b.dataset.step));
                     update();
+                    if (input.value === '0') card.querySelector('.dm-add').focus();
                 });
             });
             input.addEventListener('input', update);
@@ -1093,7 +1112,11 @@
                 var q = p.available ? Math.min(SHOP.maxQty, Math.max(0, parseInt(input.value, 10) || 0)) : 0;
                 if (String(q) !== input.value) input.value = q;
                 card.classList.toggle('is-selected', q > 0);
-                if (q) { items.push({ sku: card.dataset.sku, name: p.name, qty: q, price: p.price, line: q * p.price }); total += q * p.price; }
+                if (p.available) {
+                    card.querySelector('.dm-add').classList.toggle('hidden', q > 0);
+                    card.querySelector('.dm-stepper').classList.toggle('hidden', q === 0);
+                }
+                if (q) { items.push({ sku: card.dataset.sku, name: p.name, size: p.size, qty: q, price: p.price, line: q * p.price }); total += q * p.price; }
             });
             return { items: items, total: total };
         }
@@ -1101,7 +1124,7 @@
         function update() {
             var c = cart();
             $('dm-lines').innerHTML = c.items.map(function (i) {
-                return '<div class="flex justify-between gap-4"><span>' + esc(i.name) + ' <span class="opacity-60">× ' + i.qty + '</span></span><span class="tabular-nums">' + inr(i.line) + '</span></div>';
+                return '<div class="flex justify-between gap-4"><span>' + esc(i.name) + ', ' + esc(i.size) + ' <span class="opacity-60">× ' + i.qty + '</span></span><span class="tabular-nums">' + inr(i.line) + '</span></div>';
             }).join('');
             $('dm-empty').classList.toggle('hidden', c.total > 0 || !SHOP.open);
             $('dm-details').classList.toggle('hidden', c.total === 0 || !SHOP.open);
@@ -1122,9 +1145,30 @@
         function cleanPhone(v) { var d = v.replace(/\D/g, ''); return d.length === 12 && d.indexOf('91') === 0 ? d.slice(2) : (d.length === 11 && d[0] === '0' ? d.slice(1) : d); }
         var saved = store.get(SAVE_DETAILS) || {};   // remembered on the customer's own device for next time
         Object.keys(rules).forEach(function (k) { if (saved[k]) form.elements[k].value = saved[k]; });
+        var hints = {
+            name: 'Please enter your full name.',
+            phone: 'Please enter a 10-digit mobile number.',
+            address: 'Please add your house number, street and area.',
+            city: 'Please enter your city or town.',
+            pincode: 'Please enter a valid 6-digit PIN code.',
+            state: 'Please enter your state.'
+        };
         var showMsg = function (t) { msgEl.textContent = t; msgEl.classList.toggle('hidden', !t); };
+        function setFieldError(el, text) {
+            var err = el.parentNode.querySelector('.dm-err');
+            el.classList.toggle('dm-invalid', !!text);
+            el.setAttribute('aria-invalid', text ? 'true' : 'false');
+            if (text && !err) { err = document.createElement('span'); err.className = 'dm-err'; err.id = 'dm-err-' + el.name; el.parentNode.appendChild(err); el.setAttribute('aria-describedby', err.id); }
+            if (err) { err.textContent = text || ''; err.classList.toggle('hidden', !text); }
+        }
         form.querySelectorAll('.dm-field').forEach(function (el) {
-            el.addEventListener('input', function () { el.classList.remove('dm-invalid'); if (!form.querySelector('.dm-invalid')) showMsg(''); });
+            el.addEventListener('input', function () {
+                if (el.classList.contains('dm-invalid') && rules[el.name] && rules[el.name](el.value)) setFieldError(el, '');
+                if (!form.querySelector('.dm-invalid')) showMsg('');
+            });
+            el.addEventListener('blur', function () {   // gentle check once the customer leaves a field
+                if (rules[el.name] && el.value.trim() !== '' && !rules[el.name](el.value)) setFieldError(el, hints[el.name]);
+            });
         });
 
         /* ---------- order message ---------- */
@@ -1136,16 +1180,30 @@
             return 'DM-' + String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate()) + '-' + s;
         }
         function orderText(o) {
-            var c = o.customer, lines = ['*New order: ' + o.id + '*'];
-            o.items.forEach(function (i) { lines.push('• ' + i.name + ' × ' + i.qty + ' = ' + inr(i.line)); });
-            lines.push('*Total: ' + inr(o.total) + '*');
-            lines.push('', '*Deliver to:*', c.name, c.address, c.city + ', ' + c.state + ' – ' + c.pincode, 'Mobile: ' + c.phone);
-            lines.push('', 'Please confirm my order and share the payment details.');
+            var c = o.customer;
+            var date = o.date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+            var mobile = '+91 ' + c.phone.slice(0, 5) + ' ' + c.phone.slice(5);
+            var lines = [
+                '*Order ID:* ' + o.id,
+                '*Date:* ' + date,
+                '',
+                '*Items*'
+            ];
+            o.items.forEach(function (i, n) {
+                lines.push((n + 1) + '. ' + i.name + ', ' + i.size + ' — ' + i.qty + ' × ' + inr(i.price) + ' = ' + inr(i.line));
+            });
+            lines.push('*Order total: ' + inr(o.total) + '*');
+            lines.push('', '*Delivery details*',
+                       'Name: ' + c.name,
+                       'Mobile: ' + mobile,
+                       'Address: ' + c.address,
+                       c.city + ', ' + c.state + ' – ' + c.pincode);
+            lines.push('', 'Kindly confirm availability and share the payment details.');
             return lines.join('\n');
         }
         function waLink(o) { return 'https://wa.me/' + SHOP.whatsapp + '?text=' + encodeURIComponent(orderText(o)); }
         function mailLink(o) {
-            return 'mailto:' + SHOP.email + '?subject=' + encodeURIComponent('Coffee order ' + o.id + ' — ' + inr(o.total)) +
+            return 'mailto:' + SHOP.email + '?subject=' + encodeURIComponent('Order ' + o.id + ' — Roasted Coffee Beans — ' + inr(o.total)) +
                    '&body=' + encodeURIComponent(orderText(o).replace(/\*/g, ''));
         }
 
@@ -1157,15 +1215,15 @@
             if (!c.total || !SHOP.open) return;
             Object.keys(rules).forEach(function (k) {
                 var el = form.elements[k], ok = rules[k](el.value);
-                el.classList.toggle('dm-invalid', !ok);
+                setFieldError(el, ok ? '' : hints[k]);
                 if (!ok && !bad) bad = el;
             });
-            if (bad) { showMsg('Please check the highlighted fields.'); bad.focus(); return; }
+            if (bad) { showMsg('A few details need your attention — see the highlighted fields.'); bad.focus(); return; }
             var cust = {};
             Object.keys(rules).forEach(function (k) { cust[k] = form.elements[k].value.trim().replace(/\s+/g, ' '); });
             cust.phone = cleanPhone(cust.phone);
             store.set(SAVE_DETAILS, cust);
-            order = { id: newOrderId(), items: c.items, total: c.total, customer: cust };
+            order = { id: newOrderId(), date: new Date(), items: c.items, total: c.total, customer: cust };
             window.open(waLink(order), '_blank', 'noopener');
             showSent();
         });
@@ -1179,6 +1237,12 @@
             $('dm-sent').classList.remove('hidden');
             $('dm-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        $('dm-edit').addEventListener('click', function () {   // back to the form with the same packs and details
+            $('dm-sent').classList.add('hidden');
+            $('dm-cart-view').classList.remove('hidden');
+            update();
+            $('dm-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
         $('dm-new').addEventListener('click', function () {
             order = null;
             cards.forEach(function (c) { c.querySelector('.dm-qty').value = 0; });
@@ -1200,8 +1264,8 @@
             }] };
             Object.keys(SHOP.products).forEach(function (sku) {
                 var pr = SHOP.products[sku];
-                ld['@graph'].push({ '@type': 'Product', name: pr.name, sku: 'DM-RAW-' + sku.toUpperCase(), image: site + 'process/p6.jpeg',
-                    description: 'Unroasted (raw) coffee beans grown, hand-picked and sun-dried at Durga Madhab Estate, Koraput, Odisha.',
+                ld['@graph'].push({ '@type': 'Product', name: pr.name + ' – ' + pr.size, sku: 'DM-ROAST-' + sku.toUpperCase(), image: site + 'process/p6.jpeg',
+                    description: 'Roasted coffee beans from Durga Madhab Estate, Koraput, Odisha: estate-grown, hand-picked and sun-dried before roasting.',
                     brand: { '@type': 'Brand', name: 'Durga Madhab Estate' },
                     offers: { '@type': 'Offer', price: pr.price.toFixed(2), priceCurrency: 'INR', url: site + '#shop',
                               availability: 'https://schema.org/' + (pr.available && SHOP.open ? 'InStock' : 'OutOfStock'),
